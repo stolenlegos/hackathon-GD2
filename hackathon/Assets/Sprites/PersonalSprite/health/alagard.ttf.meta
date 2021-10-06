@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c6c2488c97035ab46a37cae1bd006074
+guid: 335ec5c2ba3aa474aa8d49be74653a09
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Helvetica Neue
+  - Alagard
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0

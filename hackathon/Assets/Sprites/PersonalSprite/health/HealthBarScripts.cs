@@ -32,7 +32,6 @@ public class HealthBarScripts : MonoBehaviour
 
     private void Update() { 
         if (_currentHealth <= 0 && !_loseStateReached) {
-            restartButton.SetActive(true);
             Time.timeScale = 0; 
             _loseStateReached = true; 
         }
