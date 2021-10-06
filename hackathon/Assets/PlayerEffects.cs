@@ -11,9 +11,11 @@ public class PlayerEffects : MonoBehaviour, Observer
   }
 
 
-  void OnNotify (Object obj, NotificationType noTy) {
+  public void OnNotify (Object obj, NotificationType noTy) {
     if (noTy == NotificationType.healthPotion && health < 100) {
       health += 10;
+    } else if (noTy == NotificationType.powerUp) {
+      //do powerup
     }
   }
 }
