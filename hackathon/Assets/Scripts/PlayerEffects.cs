@@ -12,6 +12,10 @@ public class PlayerEffects : MonoBehaviour, Observer
     health = 100;
     noDam = false;
     timer = 5f;
+
+    foreach (SubjectBeingObserved subject in FindObjectsOfType<SubjectBeingObserved>()) {
+        subject.AddObserver(this);
+    }
   }
 
 
@@ -25,11 +29,16 @@ public class PlayerEffects : MonoBehaviour, Observer
     if (timer < 0) {
       noDam = false;
     }
+
+    Debug.Log(health);
+    Debug.Log(noDam);
+    Debug.Log(timer);
   }
 
 
   public void OnNotify (Object obj, NotificationType noTy) {
-    if (noTy == NotificationType.healthPotion && health < 100) {
+    Debug.Log("Recieved");
+    if (noTy == NotificationType.healthPotion) {
       health += 10;
     } else if (noTy == NotificationType.star) {
       noDam = true;
