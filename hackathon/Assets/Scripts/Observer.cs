@@ -13,5 +13,6 @@ public enum NotificationType
 {
   healthPotion,
   star,
-  lightning
+  lightning,
+  takeDamage
 }

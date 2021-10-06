@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterController2D : MonoBehaviour
+public class CharacterController2D : MonoBehaviour, Observer
 {
     private float _movementSpeed;
     private float _jumpForce;
     private Rigidbody2D _rb;
+    private bool speedy;
+    private float speedTimer;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _movementSpeed = 3.0f;
-        _jumpForce = 10.0f; 
+        _jumpForce = 10.0f;
+        foreach (SubjectBeingObserved subject in FindObjectsOfType<SubjectBeingObserved>()) {
+            subject.AddObserver(this);
+        }
+        speedy = false;
+        speedTimer = 5f;
     }
     private void Update()
     {
@@ -33,6 +40,20 @@ public class CharacterController2D : MonoBehaviour
         if (Input.GetButtonDown("Jump") && Mathf.Abs(_rb.velocity.y) < 0.001) {
             _rb.AddForce(new Vector2(0, _jumpForce), ForceMode2D.Impulse);
         }
+
+        if (speedy) {
+          speedTimer -= Time.deltaTime;
+        } else if (!speedy) {
+          speedTimer = 5f;
+        }
+
+        if (speedTimer <= 0) {
+          speedy = false;
+          _movementSpeed = 3f;
+        }
+
+        Debug.Log(speedy);
+        Debug.Log(_movementSpeed);
     }
 
     public float getMovementSpeed() {
@@ -49,5 +70,14 @@ public class CharacterController2D : MonoBehaviour
 
     public void setJumpForce(float newForce) {
         _jumpForce = newForce;
+    }
+
+
+    public void OnNotify (Object obj, NotificationType noTy) {
+      if (noTy == NotificationType.lightning) {
+        speedy = true;
+        _movementSpeed *= 1.5f;
+        Debug.Log("Notified");
+      }
     }
 }
