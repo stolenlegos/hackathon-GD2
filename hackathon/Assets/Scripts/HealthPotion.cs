@@ -11,8 +11,10 @@ public class HealthPotion : Collectables
     }
 
 
-    void onTriggerEnter2D(Collider other) {
-      Notify(this, NotificationType.healthPotion);
-      Destroy(gameObject);
+    void OnTriggerEnter2D(Collider2D other) {
+      if (other.tag == "Player") {
+        Notify (this, NotificationType.healthPotion);
+        Destroy(gameObject);
+      }
     }
 }
