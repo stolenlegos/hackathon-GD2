@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUps : Collectables
+public class Stars : Collectables
 {
     // Start is called before the first frame update
     void Start()
     {
-      pointValue = 20;
-      objName = "Power Up";
+      pointValue = 100;
+      objName = "Star";
     }
 
 
     void onTriggerEnter2D(Collider2D other) {
-      Notify(this, NotificationType.powerUp);
+      Notify(this, NotificationType.star);
       Destroy(gameObject);
     }
 }
