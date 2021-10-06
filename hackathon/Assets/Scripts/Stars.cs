@@ -12,7 +12,7 @@ public class Stars : Collectables
     }
 
 
-    void onTriggerEnter2D(Collider2D other) {
+    void OnTriggerEnter2D(Collider2D other) {
       Notify(this, NotificationType.star);
       Destroy(gameObject);
     }
